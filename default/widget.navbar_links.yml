@@ -1,0 +1,9 @@
+url: '/p/document'
+item:
+  my_document:
+    name: My document
+    url: 'https://docs.google.com/document/d/e/__your_publish_to_web_url_same_as_iframe_uses__/pub?embedded=true'
+  my_excel_document:
+    name: My excel document
+    url: 'https://docs.google.com/document/d/e/__your_publish_to_web_url_same_as_iframe_uses__/pub?embedded=true'
+    height: 500
