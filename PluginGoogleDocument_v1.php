@@ -7,6 +7,7 @@ class PluginGoogleDocument_v1{
    * <p>Widget to render iframe on a page.
    */
   public static function widget_render($data){
+    $language = wfI18n::getLanguage();
     $id = wfRequest::get('id');
     if(!$id){
       echo 'Param id is empty';
@@ -24,7 +25,7 @@ class PluginGoogleDocument_v1{
     }
     $element = array();
     $element[] = wfDocument::createHtmlElement('h1', $data->get("data/item/$id/name"));
-    $element[] = wfDocument::createHtmlElement('iframe', null, array('src' => $data->get("data/item/$id/url"), 'class' => 'document_iframe', 'style' => $style));
+    $element[] = wfDocument::createHtmlElement('iframe', null, array('src' => $data->get("data/item/$id/i18n/$language"), 'class' => 'document_iframe', 'style' => $style));
     wfDocument::renderElement($element);
   }
   /**
