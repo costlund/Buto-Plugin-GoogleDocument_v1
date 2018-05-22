@@ -43,4 +43,45 @@ class PluginGoogleDocument_v1{
       wfDocument::renderElement($element);
     }
   }
+  /**
+   * Fetch a Google document and only keep html inside body tags.
+   * Set data/file param for the url to Google document.
+   */
+  public static function widget_doc($data){
+    wfPlugin::includeonce('wf/array');
+    $data = new PluginWfArray($data);
+    $html = file_get_contents($data->get('data/file'));
+    $element = array();
+    $html = strstr($html, '<body');
+    $html = strstr($html, '>');
+    $html = substr($html, 1);
+    $html = strstr($html, '</body>', true);
+    $element[] = wfDocument::createHtmlElement('div', $html);
+    wfDocument::renderElement($element);
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
