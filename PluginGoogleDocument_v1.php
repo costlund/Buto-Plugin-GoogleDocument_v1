@@ -52,36 +52,38 @@ class PluginGoogleDocument_v1{
     $data = new PluginWfArray($data);
     $html = file_get_contents($data->get('data/file'));
     $element = array();
+    /**
+     * Only keep data inside body tags.
+     */
     $html = strstr($html, '<body');
     $html = strstr($html, '>');
     $html = substr($html, 1);
     $html = strstr($html, '</body>', true);
+    /**
+     * Remove footer if exist.
+     */
+    if(strstr($html, '<div id="footer">')){
+      $html = strstr($html, '<div id="footer">', true);
+    }
+    /**
+     * Remove contents if exist.
+     */
+    if(strstr($html, '<div id="contents">')){
+      $html = substr($html, 19);
+      $html = substr($html, 0, strlen($html)-6);
+    }
+    /**
+     * Remove style if exist.
+     */
+    if(strstr($html, '<style')){
+      $html = strstr($html, '</style>');
+      $html = substr($html, 8);
+    }
+    /**
+     * Render.
+     */
     $element[] = wfDocument::createHtmlElement('div', $html);
     wfDocument::renderElement($element);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
