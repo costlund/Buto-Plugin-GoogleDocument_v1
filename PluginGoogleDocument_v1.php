@@ -55,29 +55,29 @@ class PluginGoogleDocument_v1{
     /**
      * Only keep data inside body tags.
      */
-    $html = strstr($html, '<body');
-    $html = strstr($html, '>');
-    $html = substr($html, 1);
-    $html = strstr($html, '</body>', true);
+    $html = wfPhpfunc::strstr($html, '<body');
+    $html = wfPhpfunc::strstr($html, '>');
+    $html = wfPhpfunc::substr($html, 1);
+    $html = wfPhpfunc::strstr($html, '</body>', true);
     /**
      * Remove footer if exist.
      */
-    if(strstr($html, '<div id="footer">')){
-      $html = strstr($html, '<div id="footer">', true);
+    if(wfPhpfunc::strstr($html, '<div id="footer">')){
+      $html = wfPhpfunc::strstr($html, '<div id="footer">', true);
     }
     /**
      * Remove contents if exist.
      */
-    if(strstr($html, '<div id="contents">')){
-      $html = substr($html, 19);
-      $html = substr($html, 0, strlen($html)-6);
+    if(wfPhpfunc::strstr($html, '<div id="contents">')){
+      $html = wfPhpfunc::substr($html, 19);
+      $html = wfPhpfunc::substr($html, 0, wfPhpfunc::strlen($html)-6);
     }
     /**
      * Remove style if exist.
      */
-    if(strstr($html, '<style')){
-      $html = strstr($html, '</style>');
-      $html = substr($html, 8);
+    if(wfPhpfunc::strstr($html, '<style')){
+      $html = wfPhpfunc::strstr($html, '</style>');
+      $html = wfPhpfunc::substr($html, 8);
     }
     /**
      * Render.
